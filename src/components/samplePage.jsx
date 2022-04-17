@@ -41,6 +41,18 @@ function SamplePage() {
       errors.email = "This is not a valid email address format";
     }
 
+    {/***************  Validation for Flexible and Days for Availability component ***************/}
+    if (isNaN(values.daysAvail)) {
+      errors.daysAvail = "Days for Availability only accepts numbers";
+    }
+    
+    if (!values.flexibleCheckbox) {
+      if (!values.daysAvail) {
+        errors.daysAvail = "Days for Availability is required";
+      }
+    }
+    {/*******************************************************************************************/}
+
     return errors;
   };
 
@@ -87,6 +99,39 @@ function SamplePage() {
         </div>
         <br />
         {/**************************************************/}
+
+        {/*************** Flexible component ***************/}
+        <div className="flexible-checkbox-wrapper" style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+          }}>
+            <input 
+              type="checkbox" 
+              name="flexibleCheckbox" 
+              onChange={handleState}/> Flexible
+        </div>
+        <br />
+        {/*************************************************/}
+
+        {/*************** Days for Availability component ***************/}
+        <div className="days-availability-wrapper" style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+          }}>
+          <label name="daysAvailLbl">Days for Availability</label>
+          <input
+            type="text"
+            name="daysAvail"
+            placeholder="Days for Availability"
+            value={formValues.daysAvail}
+            onChange={handleChange}
+          />
+          <p style={{ color: "red" }}>{formErrors.daysAvail}</p>
+        </div>
+        <br/>
+        {/************************************************************/}
 
         {/**************** Submit button component ***************/}
         <div className="submit-button-wrapper" style={{
