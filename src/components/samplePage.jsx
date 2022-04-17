@@ -36,6 +36,11 @@ function SamplePage() {
       errors.fullName = "Full name is required";
     }
 
+    {/***************  Validation for Email component ***************/}
+    if (!regex.test(values.email) && values.email) {
+      errors.email = "This is not a valid email address format";
+    }
+
     return errors;
   };
 
@@ -63,6 +68,25 @@ function SamplePage() {
         </div>
         <br/ >
         {/***************************************************/}
+
+        {/*************** Email component ***************/}
+            <div className="email-wrapper" style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+          }}>
+          <label name="emailLbl">Email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            value={formValues.email}
+            onChange={handleChange}
+          />
+          <p style={{ color: "red" }}>{formErrors.email}</p>
+        </div>
+        <br />
+        {/**************************************************/}
 
         {/**************** Submit button component ***************/}
         <div className="submit-button-wrapper" style={{
